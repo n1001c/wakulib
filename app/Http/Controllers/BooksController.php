@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Book;
 
 class BooksController extends Controller
 {
@@ -13,7 +14,8 @@ class BooksController extends Controller
      */
     public function index()
     {
-        //
+        $books = Book::all();
+        return $books;
     }
 
     /**
@@ -34,7 +36,17 @@ class BooksController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $book = new Book;
+        $book->user_id = $request->user_id;
+        $book->title = $request->title;
+        $book->phonetic = $request->phonetic;
+        $book->author = $request->author;
+        $book->publisher = $request->publisher;
+        $book->volume = $request->volume;
+        $book->chapter = $request->chapter;
+        $book->status = $request->status;
+        $book->image_url = $request->image_url;
+        $book->save();
     }
 
     /**
@@ -45,7 +57,8 @@ class BooksController extends Controller
      */
     public function show($id)
     {
-        //
+        $book = Book::find($id);
+        return $book;
     }
 
     /**
@@ -68,7 +81,17 @@ class BooksController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $book = Book::find($id);
+        // $book->user_id = $request->user_id;
+        $book->title = $request->title;
+        $book->phonetic = $request->phonetic;
+        $book->author = $request->author;
+        $book->publisher = $request->publisher;
+        $book->volume = $request->volume;
+        $book->chapter = $request->chapter;
+        $book->status = $request->status;
+        $book->image_url = $request->image_url;
+        $book->save();
     }
 
     /**
@@ -79,6 +102,7 @@ class BooksController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $book = Book::find($id);
+        $book->delete();
     }
 }
