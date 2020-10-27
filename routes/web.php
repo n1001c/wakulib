@@ -17,5 +17,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('users', 'App\Http\Controllers\UsersController');
-Route::resource('books', 'App\Http\Controllers\BooksController');
+// Route::resource('users', 'App\Http\Controllers\UsersController');
+// Route::resource('books', 'App\Http\Controllers\BooksController');
