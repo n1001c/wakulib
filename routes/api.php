@@ -18,10 +18,7 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::group(['middleware' => ['api']], function() {
-    Route::resource('users', 'App\Http\Controllers\UsersController');
-});
-
+Route::resource('users', 'App\Http\Controllers\UsersController');
 Route::post('login', [App\Http\Controllers\Api\AuthController::class, 'login']);
 Route::get('refresh', [App\Http\Controllers\Api\AuthController::class, 'refresh']);
 Route::group(['middleware' => ['jwt.auth']], function () {
