@@ -15,8 +15,8 @@ class BooksController extends Controller
      */
     public function index()
     {
-        $books = Book::where('user_id', auth()->user()->id);
-        return $books;
+        $books = Book::where('user_id', auth()->user()->id)->get();
+        return response()->json($books);
     }
 
     /**
@@ -36,9 +36,11 @@ class BooksController extends Controller
         $book->volume = $request->volume;
         $book->chapter = $request->chapter;
         $book->status = $request->status;
-        $book->image_url = $request->image_url;
+        $book->image_url = $request->image_url || '';
         $book->point = $request->point;
         $book->save();
+        // TODO save成功したかどうかでresponse場合分け
+        return response()->json($book);
     }
 
     /**
@@ -59,9 +61,9 @@ class BooksController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, Book $book)
     {
-        $book = Book::find($request->id);
+        // $book = Book::find($request->id);
         // $book->user_id = $request->user_id;
         $book->title = $request->title;
         $book->phonetic = $request->phonetic;
@@ -70,9 +72,10 @@ class BooksController extends Controller
         $book->volume = $request->volume;
         $book->chapter = $request->chapter;
         $book->status = $request->status;
-        $book->image_url = $request->image_url;
+        $book->image_url = $request->image_url || '';
         $book->point = $request->point;
         $book->save();
+        return response()->json($book);
     }
 
     /**
