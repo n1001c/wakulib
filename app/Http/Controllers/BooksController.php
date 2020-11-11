@@ -29,10 +29,10 @@ class BooksController extends Controller
     {
         $book = new Book;
         $book->user_id = auth()->user()->id;
-        $book->title = $request->title;
-        $book->phonetic = $request->phonetic;
-        $book->author = $request->author;
-        $book->publisher = $request->publisher;
+        $book->title = $request->title || '';
+        $book->phonetic = $request->phonetic || '';
+        $book->author = $request->author || '';
+        $book->publisher = $request->publisher || '';
         $book->volume = $request->volume;
         $book->chapter = $request->chapter;
         $book->status = $request->status;
@@ -66,9 +66,9 @@ class BooksController extends Controller
         // $book = Book::find($request->id);
         // $book->user_id = $request->user_id;
         $book->title = $request->title;
-        $book->phonetic = $request->phonetic;
-        $book->author = $request->author;
-        $book->publisher = $request->publisher;
+        $book->phonetic = $request->phonetic || '';
+        $book->author = $request->author || '';
+        $book->publisher = $request->publisher || '';
         $book->volume = $request->volume;
         $book->chapter = $request->chapter;
         $book->status = $request->status;
